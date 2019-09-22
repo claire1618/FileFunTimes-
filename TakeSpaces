@@ -1,0 +1,61 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.File;
+import java.util.Scanner;
+
+public class TakeSpaces {
+
+    public static void main(String[] args) throws FileNotFoundException {
+        File inputFile = new File("inputfile.txt");
+        File outputFile = new File("outputfile.txt");
+        Scanner keyboard = new Scanner(System.in);
+        Scanner fileScan = new Scanner(inputFile);
+        PrintWriter input = new PrintWriter(inputFile);
+        PrintWriter output = new PrintWriter(outputFile);
+
+        String keyInput = "";
+        String hold1 = "";
+        String hold2 = "";
+        String hold3 = "";
+        String hold4 = "";
+
+        Scanner scanString = new Scanner(hold2);
+        scanString.useDelimiter("");
+
+        System.out.println("Type as many words or letters as you want and when you want to stop type a plus sign!");
+        keyboard.useDelimiter("");
+        hold1 = keyboard.next();
+
+        while(!hold1.equals("+")){
+            keyInput += hold1;
+            hold1 = keyboard.next();
+        }
+        keyboard.close();
+
+        input.write(keyInput);
+        input.close();
+
+        while(fileScan.hasNextLine()){
+            hold3 = fileScan.nextLine();
+            int lngth = hold3.length();
+            int k = 0;
+
+            while(k < lngth) {
+
+                if(hold3.substring(k, k + 1).equals(" ")) {
+                    k++;
+                } else {
+                    output.write(hold3.substring(k, k + 1));
+                    k++;
+                }
+
+            }
+
+        }
+
+        output.close();
+
+    }
+
+
+}

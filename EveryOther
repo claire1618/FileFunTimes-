@@ -1,0 +1,59 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+public class EveryOther {
+    public static void main(String args[]) throws FileNotFoundException {
+        File inputFile = new File("inputfile.txt");
+        File outputFile = new File("outputfile.txt");
+        Scanner keyboard = new Scanner(System.in);
+        Scanner fileScan = new Scanner(inputFile);
+        PrintWriter input = new PrintWriter(inputFile);
+        PrintWriter output = new PrintWriter(outputFile);
+
+        String keyInput = "";
+        String hold1 = "";
+        String hold2 = "";
+        String hold3 = "";
+        String custom = "";
+
+        System.out.println("Type first a custom symbol and then whatever and then to stop type a plus sign");
+        keyboard.useDelimiter("");
+
+        hold1 = keyboard.next();
+        custom = hold1;
+
+        while(!hold1.equals("+")){
+            keyInput += hold1;
+            hold1 = keyboard.next();
+        }
+
+        keyboard.close();
+        input.write(keyInput);
+        input.close();
+
+        while(fileScan.hasNextLine()){
+            hold2 = fileScan.nextLine();
+            int lngth = hold2.length();
+            int k = 0;
+
+            while(k < lngth) {
+
+                if(hold2.substring(k, k + 1).equals(" ")) {
+                    output.write(custom);
+                    k++;
+                } else {
+                    output.write(hold2.substring(k, k + 1));
+                    k++;
+                }
+
+            }
+            output.write(custom);
+
+        }
+
+        fileScan.close();
+        output.close();
+    }
+}

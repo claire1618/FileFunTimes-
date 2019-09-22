@@ -1,0 +1,52 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.File;
+import java.util.Scanner;
+
+public class ToLowercase {
+
+    public static void main(String[] args) throws FileNotFoundException {
+        File inputFile = new File("inputfile.txt");
+        File outputFile = new File("outputfile.txt");
+        Scanner keyboard = new Scanner(System.in);
+        Scanner fileScan = new Scanner(inputFile);
+        PrintWriter input = new PrintWriter(inputFile);
+        PrintWriter output = new PrintWriter(outputFile);
+
+        String keyInput = "";
+        String hold1 = "";
+        String hold2 = "";
+        String hold3 = "";
+
+        System.out.println("Type as many words or letters as you want to sort and when you want to stop type a plus sign!");
+        keyboard.useDelimiter("");
+        hold1 = keyboard.next();
+
+        while(!hold1.equals("+")){
+            keyInput += hold1;
+            hold1 = keyboard.next();
+        }
+        keyboard.close();
+
+        input.write(keyInput);
+        input.close();
+
+        fileScan.useDelimiter("");
+
+        while(fileScan.hasNext()){
+            hold2 = fileScan.next();
+
+            if(hold2.equals("1") || hold2.equals("2") || hold2.equals("3") || hold2.equals("4") || hold2.equals("5") || hold2.equals("6") || hold2.equals("7") || hold2.equals("8") || hold2.equals("9") || hold2.equals("0")){
+                hold3 = hold2;
+            } else{
+                hold3 = hold2.toLowerCase();
+            }
+
+            output.write(hold3);
+        }
+        output.close();
+
+    }
+
+
+}
